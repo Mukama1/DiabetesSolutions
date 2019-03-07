@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Diabetes Solutions</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Location</string>
+    <string name="title_notifications">TensorFlow</string>
+    <string name="internet">No Internet Connection</string>
+
+</resources>

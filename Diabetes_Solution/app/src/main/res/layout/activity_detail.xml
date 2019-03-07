@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"/>
+    <LinearLayout
+        android:id="@+id/image_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+    <ImageView
+        android:id="@+id/user_image_header"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="2dp"
+        android:fitsSystemWindows="true"
+        android:scaleType="fitXY" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/image_linear_layout">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- Username -->
+                <TextView
+                    android:id="@+id/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Username"
+                    android:layout_marginLeft="2dp"
+                    android:gravity="left"
+                    android:textColor="@android:color/black"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:gravity="left"
+                    android:layout_below="@+id/header"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="3dp"
+                    android:textSize="10dp" />
+
+                <!--  Description  -->
+
+                <TextView
+                    android:id="@+id/desc_hd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="10dp"
+                    android:text="Diabetes Repo Name"
+                    android:layout_marginLeft="2dp"
+                    android:layout_below="@+id/username"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_below="@+id/desc_hd"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="3dp"
+                    android:textSize="10dp" />
+
+                <!-- Date Created -->
+
+                <TextView
+                    android:id="@+id/date_created_hd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_below="@+id/desc"
+                    android:gravity="left"
+                    android:text="Date Created"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/date_created"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textColor="@android:color/black"
+                    android:layout_below="@+id/date_created_hd"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="3dp"
+                    android:textSize="10dp" />
+
+                <!-- Last Update -->
+
+                <TextView
+                    android:id="@+id/last_updated_hd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_below="@+id/date_created"
+                    android:gravity="left"
+                    android:text="Last Updated"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/last_updated"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textColor="@android:color/black"
+                    android:layout_below="@+id/last_updated_hd"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="3dp"
+                    android:textSize="10dp" />
+
+                <!--  Repo URL  -->
+
+                <TextView
+                    android:id="@+id/repo_url_hd"
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/last_updated"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="2dp"
+                    android:text="Diabetes Repo URL"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/repo_url"
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/repo_url_hd"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:textSize="10dp" />
+
+                <!--  Repo Size  -->
+
+                <TextView
+                    android:id="@+id/repo_size_hd"
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/repo_url"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="2dp"
+                    android:text="Repo Size"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/repo_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_below="@+id/repo_size_hd"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="3dp"
+                    android:textSize="10dp" />
+
+
+                <!--  Git Score  -->
+
+                <TextView
+                    android:id="@+id/git_score_hd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@android:color/black"
+                    android:layout_below="@+id/repo_size"
+                    android:text="Git Score"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/git_score"
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/git_score_hd"
+                    android:textColor="@android:color/black"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:textSize="10dp" />
+
+                <!--  Has Downloads  -->
+
+                <TextView
+                    android:id="@+id/has_download_hd"
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/git_score"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="10dp"
+                    android:text="Has Downloads"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/has_download"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:gravity="left"
+                    android:layout_below="@+id/has_download_hd"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="3dp"
+                    android:textSize="12dp" />
+
+
+                <!-- Git User URL -->
+                <TextView
+                    android:id="@+id/link_user_hd"
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_below="@+id/has_download"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="3dp"
+                    android:text="Git User URL"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/git_url"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="2dp"
+                    android:textColor="@android:color/black"
+                    android:layout_below="@+id/link_user_hd"
+                    android:layout_marginTop="3dp"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
+
+
+</RelativeLayout>
