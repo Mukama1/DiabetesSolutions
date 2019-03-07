@@ -7,7 +7,7 @@ We developed an android application that enables you to mine inform about diabet
 We also used tensor flow to do some deep learning on collected data
 
 Libraries:
-- Retrofit
+- Retrofit Library
 - GitHub API
 - REST API
 - RecycleView
