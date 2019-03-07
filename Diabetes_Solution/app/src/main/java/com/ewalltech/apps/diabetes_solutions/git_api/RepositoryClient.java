@@ -6,7 +6,7 @@ import com.ewalltech.apps.diabetes_solutions.constants.Constants;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Client {
+public class RepositoryClient {
     public static final String BASE_URL= Constants.config.GIT_API;
     public static Retrofit retrofit=null;
     public static Retrofit getClient(){

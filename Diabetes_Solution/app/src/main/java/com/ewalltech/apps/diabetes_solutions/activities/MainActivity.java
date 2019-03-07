@@ -1,5 +1,6 @@
 package com.ewalltech.apps.diabetes_solutions.activities;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,11 +8,10 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import com.ewalltech.apps.diabetes_solutions.R;
-import com.ewalltech.apps.diabetes_solutions.constants.Constants;
 import com.ewalltech.apps.diabetes_solutions.db.DBHelper;
 import com.ewalltech.apps.diabetes_solutions.fragments.HomeFragment;
-import com.ewalltech.apps.diabetes_solutions.fragments.LocationFragment;
 import com.ewalltech.apps.diabetes_solutions.fragments.TensorFlowFragment;
+import com.ewalltech.apps.diabetes_solutions.maps.MappingActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -29,9 +29,11 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                     return true;
                 case R.id.location_fragment:
-                    selectedFragment = new LocationFragment();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
-                    return true;
+                    Intent intent=new Intent(getApplicationContext(), MappingActivity.class);
+                    startActivity(intent);
+//                    selectedFragment = new LocationFragment();
+//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+//                    return true;
                 case R.id.tensorflow_fragment:
                     selectedFragment = new TensorFlowFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();

@@ -45,4 +45,17 @@ public class SaveGitUser {
     }
 
 
+    ////ToDo:: Database method for updating a user.
+    public void updateGitUser(String location, String username){
+        String query="UPDATE "+ Constants.config.DEVELOPERS_TABLE+" SET "+Constants.config.USER_LOCATION
+                +"='"+location+"' WHERE "+Constants.config.USER_NAME+ "= '"+username+"'";
+        SQLiteDatabase database = DBHelper.getHelper(context).getWritableDatabase();
+        try {
+            database.execSQL(query);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
 }

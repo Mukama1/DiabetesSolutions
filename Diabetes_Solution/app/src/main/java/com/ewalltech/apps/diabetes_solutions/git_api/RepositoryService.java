@@ -6,7 +6,7 @@ import com.ewalltech.apps.diabetes_solutions.model.ItemResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-public interface Service {
+public interface RepositoryService {
     @GET(Constants.config.URL_REPOSITORIES)
     Call<ItemResponse> getItems();
 }

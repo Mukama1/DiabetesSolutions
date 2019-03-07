@@ -1,33 +1,29 @@
 package com.ewalltech.apps.diabetes_solutions.fragments;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.InputFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ewalltech.apps.diabetes_solutions.R;
 import com.ewalltech.apps.diabetes_solutions.activities.ItemAdapter;
 import com.ewalltech.apps.diabetes_solutions.db.SaveGitUser;
-import com.ewalltech.apps.diabetes_solutions.git_api.Client;
-import com.ewalltech.apps.diabetes_solutions.git_api.Service;
+import com.ewalltech.apps.diabetes_solutions.git_api.GitUserClient;
+import com.ewalltech.apps.diabetes_solutions.git_api.GitUserService;
+import com.ewalltech.apps.diabetes_solutions.git_api.RepositoryClient;
+import com.ewalltech.apps.diabetes_solutions.git_api.RepositoryService;
 import com.ewalltech.apps.diabetes_solutions.model.Item;
 import com.ewalltech.apps.diabetes_solutions.model.ItemResponse;
+import com.ewalltech.apps.diabetes_solutions.model.User;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -40,7 +36,6 @@ public class HomeFragment extends Fragment{
     TextView disconnected;
     private RecyclerView recyclerView;
     //private Item item;
-
     private List<Item> items;//=new Item(login,avatar,html);
     ProgressDialog pd;
     View rootView;
@@ -87,8 +82,8 @@ public class HomeFragment extends Fragment{
     private void loadJSON(){
         disconnected= rootView.findViewById(R.id.disconnected);
         try {
-            //Client client = new Client();
-            Service apiService= Client.getClient().create(Service.class);
+            //RepositoryClient client = new RepositoryClient();
+            RepositoryService apiService= RepositoryClient.getClient().create(RepositoryService.class);
             Call<ItemResponse> call = apiService.getItems();
             call.enqueue(new Callback<ItemResponse>() {
                 @Override
@@ -97,6 +92,7 @@ public class HomeFragment extends Fragment{
                         items = response.body().getItems();
                         //testing the elements that are picked from the web
                         Log.e("TAG", "response 33-----------------------------------: " + new Gson().toJson(response.body()));
+                        //loadGitUserLocations("bewest");
                         recyclerView.setAdapter(new ItemAdapter(getActivity().getApplicationContext(), items));
                         recyclerView.smoothScrollToPosition(0);
                         swipeContainer.setRefreshing(false);
@@ -122,7 +118,39 @@ public class HomeFragment extends Fragment{
             Toast.makeText(getActivity(), ex.toString(), Toast.LENGTH_SHORT).show();
         }
     }
+////ToDO:: load GitHub user locations
 
+    public void loadGitUserLocations(final String username){
+       String locations;
+        try {
 
+            GitUserService apiService= GitUserClient.getGitUserClient().create(GitUserService.class);
+            Call<User> call = apiService.getUser(username);
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+
+                    int statusCode = response.code();
+                    User user = response.body();
+                    String locations=user.getLocation();
+                    //ToDO:: update the database to have the user location.
+                    new SaveGitUser(getContext()).updateGitUser(locations,username);
+                    Log.e("TAG", "User Locations-----------------------------------: " + new Gson().toJson(response.body()));
+
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Toast.makeText(getActivity().getApplicationContext(), "Failed To Load User Location", Toast.LENGTH_LONG).show();
+                }
+            });
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public  String locationName(String name){
+        return name;
+    }
 
 }
