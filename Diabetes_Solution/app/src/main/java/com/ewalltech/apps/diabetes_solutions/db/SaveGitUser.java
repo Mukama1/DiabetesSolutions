@@ -2,6 +2,7 @@ package com.ewalltech.apps.diabetes_solutions.db;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
 import android.widget.Toast;
@@ -52,8 +53,9 @@ public class SaveGitUser {
         SQLiteDatabase database = DBHelper.getHelper(context).getWritableDatabase();
         try {
             database.execSQL(query);
-        }catch (Exception e){
+        }catch (SQLException e){
             e.printStackTrace();
+
         }
     }
 

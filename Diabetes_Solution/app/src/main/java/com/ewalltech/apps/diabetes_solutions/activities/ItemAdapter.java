@@ -55,7 +55,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
                 items.get(i).getUpdated_at(), items.get(i).getRepo_size(), items.get(i).getLanguage(), items.get(i).getArchived(), items.get(i).getWatchers(), items.get(i).getScore(),
                 items.get(i).getHas_issues(), items.get(i).getHas_projects(), items.get(i).getHas_downloads(), items.get(i).getDefault_branch(), repoDetails.getLogin());
 
-        new HomeFragment().loadGitUserLocations(repoDetails.getLogin());
+        //new HomeFragment().loadGitUserLocations(repoDetails.getLogin());
+
         viewHolder.title.setText(repoDetails.getLogin());
         viewHolder.githublink1.setText(repoDetails.getHtml_url());
 

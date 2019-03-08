@@ -1,15 +1,19 @@
 package com.ewalltech.apps.diabetes_solutions.maps;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-
+import android.widget.Toast;
 import com.ewalltech.apps.diabetes_solutions.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import java.util.ArrayList;
 
 public class MappingActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -38,11 +42,65 @@ public class MappingActivity extends AppCompatActivity implements OnMapReadyCall
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        GeocodingLocation locationAddress = new GeocodingLocation();
+        ////TODO::: Testing static implementation
+        String [] locations={"Dallas","Texas","London","Tokyo","Kampala","Newyork","Washington","Oregon","Berlin","Paris","Lago","Quebec"};
+        for(int i=0;i<locations.length;i++) {
+            ArrayList coordinatesArrayList;
+            coordinatesArrayList=locationAddress.getAddressFromLocation(locations[i], getApplicationContext());
+            if(coordinatesArrayList.size()>1) {
+                //Toast.makeText(getApplicationContext(), "" + coordinatesArrayList.get(0), Toast.LENGTH_LONG).show();
 
+            mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(Double.parseDouble(""+coordinatesArrayList.get(0)),Double.parseDouble(""+coordinatesArrayList.get(1))))
+                    .title("Jack")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.you))
+                    .snippet("Java Developer"));
+            }
+        }
         // Add a marker in Sydney and move the camera
         LatLng Dallas  = new LatLng(32.777861, -96.794758);
         mMap.addMarker(new MarkerOptions().position(Dallas).title("Dallas, USA"));
+
        // mMap.moveCamera(CameraUpdateFactory.newLatLng(Dallas));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(32.777861, -96.794758), 5.0f));
+    
     }
+////TODO::: Return the location coordinates based on the location name
+
+    private class GeocoderHandler extends Handler {
+        @Override
+        public void handleMessage(Message message) {
+            String locationAddress;
+            switch (message.what) {
+                case 1:
+                    Bundle bundle = message.getData();
+                    locationAddress = bundle.getString("address");
+                    break;
+                default:
+                    locationAddress = null;
+            }
+            //latLongTV.setText(locationAddress);
+//            Toast.makeText(getApplicationContext(), locationAddress, Toast.LENGTH_LONG).show();
+            showCoordinates(locationAddress);
+        }
+        public String showCoordinates(String mapCoordinates){
+            return mapCoordinates;
+        }
+    }
+public ArrayList coordinatesDouble(String coordinates){
+
+    ArrayList<Double> arrayList = new ArrayList<>();
+    String[] coordinatesArray=null;
+        if(coordinates!="") {
+             coordinatesArray = coordinates.trim().split("\\,");
+            arrayList.add(Double.parseDouble(coordinatesArray[0]));
+            arrayList.add(Double.parseDouble(coordinatesArray[1]));
+        }else{
+            Toast.makeText(this, "Empty String", Toast.LENGTH_LONG).show();
+        }
+        return  arrayList;
+
+
+}
 }
