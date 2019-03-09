@@ -44,7 +44,19 @@ public class MappingActivity extends AppCompatActivity implements OnMapReadyCall
         mMap = googleMap;
         GeocodingLocation locationAddress = new GeocodingLocation();
         ////TODO::: Testing static implementation
-        String [] locations={"Dallas","Texas","London","Tokyo","Kampala","Newyork","Washington","Oregon","Berlin","Paris","Lago","Quebec"};
+        String [] locations={"Dallas","Texas","London","Tokyo","Kampala","Newyork",
+                "Washington","Oregon","Berlin","Paris","Lagos","Quebec","Nairobi","Capetown","Silicon Valley",
+        "Boston","Chicago","Puerto rico","Los angeles","Las vegas","Kansas","Ohio"};
+
+        String []  language={"Jupyter NoteBook","Java","Python","MakeFile","Python","Objective C","Python","Javascript",
+        "Python","Action Script","Java Script","HTML","Java Script","Java Script","Objective C","Java Script","Ruby",
+        "Jupyter Notebook","Javascript","Python","Python","MakeFile"};
+
+
+        String [] usernames={"ludoa888","Glucosio","Jg-fisher","openaps","Flameeyes","Research Kit","push-things",
+                "bewest","xingyuezhiji","spikeup","intellina","tedpool-org","Rytiggy","Zxweei","benrudolph",
+                "jphall663","LCJHust","Diabetik","Andrewwlong","Whatduck","kthouz","jxx123"};
+
         for(int i=0;i<locations.length;i++) {
             ArrayList coordinatesArrayList;
             coordinatesArrayList=locationAddress.getAddressFromLocation(locations[i], getApplicationContext());
@@ -53,9 +65,9 @@ public class MappingActivity extends AppCompatActivity implements OnMapReadyCall
 
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(Double.parseDouble(""+coordinatesArrayList.get(0)),Double.parseDouble(""+coordinatesArrayList.get(1))))
-                    .title("Jack")
+                    .title(usernames[i])
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.you))
-                    .snippet("Java Developer"));
+                    .snippet(language[i]));
             }
         }
         // Add a marker in Sydney and move the camera
